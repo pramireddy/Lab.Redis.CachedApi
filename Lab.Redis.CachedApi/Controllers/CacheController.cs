@@ -53,7 +53,7 @@ namespace Lab.Redis.CachedApi.Controllers
             //fixtute.RepeatCount = 10;
             //var fakeUsersList = fixtute.Create<IEnumerable<User>>();
 
-            return users;
+            return users.OrderBy( x=> x.PersonNumber);
         }
 
         [HttpGet("Users/Search/{key}")]
@@ -61,7 +61,7 @@ namespace Lab.Redis.CachedApi.Controllers
         {
             var result = await redisCacheService.SearchUsers(key);
 
-            return result;
+            return result.OrderBy( x => x.PersonNumber);
         }
 
         [HttpGet("Users/{key}")]
@@ -76,14 +76,14 @@ namespace Lab.Redis.CachedApi.Controllers
         {
             var users = new List<User>();
 
-            for (int x = 100; x < 110; x++)
+            for (int x = 100; x < 125; x++)
             {
                 var user = new User
                 {
                     PersonNumber = x,
-                    FirstName = $"FirstName{x}",
+                    FirstName = GetFirstName(x),
                     LastName = $"LastName{x}",
-                    Email = $"email{x}@test.com",
+                    Email = $"{GetEmail(x)}@test.com",
 
                 };
 
@@ -93,5 +93,46 @@ namespace Lab.Redis.CachedApi.Controllers
 
             return users;
         }
+
+        private static string GetFirstName(int number)
+        {
+            if (number % 3 == 0 && number % 5 == 0)
+            {
+                return "FizzBuzz";
+            }
+            else if (number % 5 == 0)
+            {
+                return "Buzz";
+            }
+            else if (number % 3 == 0)
+            {
+                return "Fizz";
+            }
+            else
+            {
+                return $"FirstName{number}";
+            }
+        }
+
+        private static string GetEmail(int number)
+        {
+            if (number % 3 == 0 && number % 5 == 0)
+            {
+                return "prasad";
+            }
+            else if (number % 5 == 0)
+            {
+                return "akhi";
+            }
+            else if (number % 3 == 0)
+            {
+                return "veer";
+            }
+            else
+            {
+                return $"email{number}";
+            }
+        }
     }
+
 }

@@ -63,7 +63,8 @@ namespace Lab.Redis.CachedApi.Cache
                       .WithSchema(
                           x => x.Numeric("$.PersonNumber", "PersonNumber"),
                           x => x.Text("$.FirstName", "FirstName"),
-                          x => x.Text("$.LastName", "LastName")
+                          x => x.Text("$.LastName", "LastName"),
+                          x => x.Text("$.Email", "Email")
                       )
                       .Build();
 
@@ -72,7 +73,10 @@ namespace Lab.Redis.CachedApi.Cache
 
                 var searchQuery = RediSearchQuery
                     .On(USER_INDEX)
-                    .UsingQuery($"@FirstName:{query}*")
+                    //.UsingQuery($"@FirstName|LastName|Email:{query}*")
+                    //.UsingQuery($"@FirstName|LastName|Email:%{query}%") --not working
+                    .UsingQuery($"@FirstName|LastName|Email:*{query}*") // contains -- these queries are cpu intensive
+                    .Limit(0,50)
                     .Build();
 
                 var result = await redisdatabase.SearchAsync(searchQuery);
