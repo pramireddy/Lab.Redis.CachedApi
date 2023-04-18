@@ -14,11 +14,11 @@ public class Program
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
 
-        string pwd = "xZyptv8D40MZOdxCX1mZiERNpz95mbBm";
+        string pwd = "X2sNOeh0vFZAU5ZLhOLjI9lXKJQ7MVOh";
 
 
         IConnectionMultiplexer connectionMultiplexer = 
-            ConnectionMultiplexer.Connect($"redis-19035.c56.east-us.azure.cloud.redislabs.com:19035,password={pwd}");
+            ConnectionMultiplexer.Connect($"redis-11078.c256.us-east-1-2.ec2.cloud.redislabs.com:11078,password={pwd}");
 
         builder.Services.AddSingleton(connectionMultiplexer);
         builder.Services.AddScoped<IRedisCacheService, RedisCacheService>();

@@ -10,11 +10,12 @@ using System.Threading.Tasks;
 namespace Lab.Redis.CachedApi.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("[controller]/Users")]
     public class CacheController : ControllerBase
     {
         private readonly ILogger<CacheController> logger;
         private readonly IRedisCacheService redisCacheService;
+        private readonly List<User> users = new();
 
         /// <summary>
         /// 
@@ -27,36 +28,30 @@ namespace Lab.Redis.CachedApi.Controllers
         {
             this.logger = logger;
             this.redisCacheService = redisCacheService;
-
+            this.users = GetUserData();
         }
 
 
-        [HttpPost("Users")]
+        [HttpPost]
         public async Task Post()
         {
-            List<User> users = GetUserData();
-
-            //var fixtute = new Fixture();
-            //fixtute.RepeatCount = 10;
-            //var fakeUsersList = fixtute.Create<IEnumerable<User>>();
-
             await redisCacheService.SetUserDataAsync(users);
         }
 
+        [HttpDelete]
+        public async Task Delete()
+        {
+            await redisCacheService.RemoveUserDataAsync(users);
+        }
 
-        [HttpGet("Users")]
+        [HttpGet]
         public IEnumerable<User> Get()
         {
-            List<User> users = GetUserData();
-
-            //var fixtute = new Fixture();
-            //fixtute.RepeatCount = 10;
-            //var fakeUsersList = fixtute.Create<IEnumerable<User>>();
 
             return users.OrderBy( x=> x.PersonNumber);
         }
 
-        [HttpGet("Users/Search/{key}")]
+        [HttpGet("Search/{key}")]
         public async Task<IEnumerable<User>> Search(string key)
         {
             var result = await redisCacheService.SearchUsers(key);
@@ -64,7 +59,7 @@ namespace Lab.Redis.CachedApi.Controllers
             return result.OrderBy( x => x.PersonNumber);
         }
 
-        [HttpGet("Users/{key}")]
+        [HttpGet("{key}")]
         public async Task<User> Get(string key)
         {
             var result = await redisCacheService.GetUserAsync(key);
@@ -72,9 +67,13 @@ namespace Lab.Redis.CachedApi.Controllers
             return result;
         }
 
-        private static List<User> GetUserData()
+        private List<User> GetUserData()
         {
-            var users = new List<User>();
+            if (users.Any())
+            {
+                return users;
+            }
+            //var users = new List<User>();
 
             for (int x = 100; x < 125; x++)
             {

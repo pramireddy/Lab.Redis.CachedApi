@@ -3,7 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lab.Redis.CachedApi", "Lab.Redis.CachedApi\Lab.Redis.CachedApi.csproj", "{73D6BAD9-E0F1-4C08-AB37-009C9F05F83C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lab.Redis.CachedApi", "Lab.Redis.CachedApi\Lab.Redis.CachedApi.csproj", "{73D6BAD9-E0F1-4C08-AB37-009C9F05F83C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lab.Azure.StorageService", "Lab.Azure.StorageService\Lab.Azure.StorageService.csproj", "{140588B2-5358-42D2-9AB6-D11629935883}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lab.RediSearch.ConsoleApp", "Lab.RediSearch.ConsoleApp\Lab.RediSearch.ConsoleApp.csproj", "{A3A8E65E-E0CF-49E0-BF5B-637647F0C6BE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lab.JwtToken", "Lab.JwtToken\Lab.JwtToken.csproj", "{D17C40FA-0C4E-45F2-8593-9C5D11AF5440}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +21,18 @@ Global
 		{73D6BAD9-E0F1-4C08-AB37-009C9F05F83C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{73D6BAD9-E0F1-4C08-AB37-009C9F05F83C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{73D6BAD9-E0F1-4C08-AB37-009C9F05F83C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{140588B2-5358-42D2-9AB6-D11629935883}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{140588B2-5358-42D2-9AB6-D11629935883}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{140588B2-5358-42D2-9AB6-D11629935883}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{140588B2-5358-42D2-9AB6-D11629935883}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3A8E65E-E0CF-49E0-BF5B-637647F0C6BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3A8E65E-E0CF-49E0-BF5B-637647F0C6BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3A8E65E-E0CF-49E0-BF5B-637647F0C6BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3A8E65E-E0CF-49E0-BF5B-637647F0C6BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D17C40FA-0C4E-45F2-8593-9C5D11AF5440}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D17C40FA-0C4E-45F2-8593-9C5D11AF5440}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D17C40FA-0C4E-45F2-8593-9C5D11AF5440}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D17C40FA-0C4E-45F2-8593-9C5D11AF5440}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

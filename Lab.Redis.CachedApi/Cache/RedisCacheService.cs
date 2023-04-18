@@ -42,6 +42,26 @@ namespace Lab.Redis.CachedApi.Cache
 
         }
 
+        public async Task RemoveUserDataAsync(IEnumerable<User> users)
+        {
+            try
+            {
+                
+                //NReJSONSerializer.SerializerProxy = new TestJsonSerializer();
+
+                foreach (var user in users)
+                {
+                    //await redisdatabase.JsonClearAsync($"{UserKeyPrefix}{user.PersonNumber}", user, commandFlags: CommandFlags.FireAndForget);
+                    var result = await redisdatabase.KeyDeleteAsync($"{UserKeyPrefix}{user.PersonNumber}");
+                }
+            }
+            catch (Exception ex)
+            {
+                var log = ex.Message;
+            }
+
+        }
+
 
         public async Task<IEnumerable<User>> SearchUsers(string query)
         {
